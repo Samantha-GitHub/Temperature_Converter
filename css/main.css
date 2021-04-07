@@ -111,6 +111,7 @@ body main aside {
   padding: 15px;
   margin-left: 15px;
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+  border-radius: 8px;
   color: black;
   float: left;
   font-style: italic;
