@@ -119,6 +119,20 @@ body main section label{
     text-align: center;
 }
 
+#alert{
+
+    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+    border: solid 2px red;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 10px;
+    color: black;
+    text-align: center;
+    font-weight: bolder;
+    display: none;
+  
+}
+
 
 
 
