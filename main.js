@@ -17,10 +17,11 @@ for (let i = 0; i < inputs.length; i++) {
 
 
 
-        if (regExpNoLetters.test(celsius.value) && regExpNoLetters.test(fahrenheit.value)) {
+        if (regExpNoLetters.test(celsius.value) || regExpNoLetters.test(fahrenheit.value)) {
 
             alert.style.display = 'none';
             console.log(celsius.value);
+            console.log(fahrenheit.value);
 
             switch (event.target.name) {
                 case "celsius":
