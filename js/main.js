@@ -1,49 +1,29 @@
-const celsius = document.getElementById("celsius");
-const fahrenheit = document.getElementById("fahrenheit");
-const alert = document.getElementById("alert");
+const celsius = document.getElementById('celsius');
+const fahrenheit = document.getElementById('fahrenheit');
+const alert = document.getElementById('alert');
+const inputs = Array.from(document.getElementsByTagName('input')); // This way you don't have to rely on the classes on the inputs
 
-const inputs = document.getElementsByClassName("input");
+// Take these out of the loop, they are constants after all and won't change
+const conversionRatio = 1.8; // somewhat more descriptive names for the constants
+const freezingPoint = 32;
+const regExpNoLetters = /[^a-z]/gm; // Multiline flag unnecessary on number input, actually letters too, case-sensitive / only lowercase etc.?
 
-for (let i = 0; i < inputs.length; i++) {
-    let input = inputs[i];
-
-    input.addEventListener("input", function (event) {
-
-
-        let value = parseFloat(event.target.value);
-        const onePointHeight = 1.8;
-        const twentyTwo = 32;
-        const regExpNoLetters = /[^a-z]/gm;
-
-
-
+inputs.forEach((input) => { // Try to avoid the for loop this way
+    input.addEventListener('input', ({ target: { value, name } }) => { // deconstruction
         if (regExpNoLetters.test(celsius.value) || regExpNoLetters.test(fahrenheit.value)) {
-
             alert.style.display = 'none';
-
-            switch (event.target.name) {
-                case "celsius":
-
-                    //To convert temperatures in Celsius to Fahrenheit, multiply by 1.8 and add 32.
-
-                    fahrenheit.value = (value * onePointHeight) + twentyTwo;
-
+            switch (name) {
+                case 'celsius':
+                    fahrenheit.value = (value * conversionRatio) + freezingPoint; // You don't really need to parse the value as you can see
                     break;
-
-                case "fahrenheit":
-
-                    //To convert temperatures in Fahrenheit to Celsius, subtract 32 and dive by 1.8 
-
-
-                    celsius.value = (value - twentyTwo) / onePointHeight;
+                case 'fahrenheit':
+                    celsius.value = (value - freezingPoint) / conversionRatio;
                     break;
-
-
+                default:
+                    throw new Error('Only celsius or fahrenheit'); // Always add this for safety
             }
-
-
         } else {
             alert.style.display = 'block';
         }
     })
-}
+});
